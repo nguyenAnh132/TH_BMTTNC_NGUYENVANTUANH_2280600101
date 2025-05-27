@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Caesar Cipher</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <td style="text-align: center; font-weight: bold; font-size: 25px;">CAESAR CIPHER</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold; color: blue;">ENCRYPTION</td>
+            </tr>
+            <tr>
+                <td>
+                    <form method="POST" action="/caesar_encrypt">
+                        <div class="mb-3">
+                            <label class="form-label">Plain text:</label>
+                            <input type="text" class="form-control" value="{{ text_encrypt if text_encrypt is defined else '' }}" name="inputPlainText" placeholder="Input Plain Text" required autofocus>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Key:</label>
+                            <input type="number" class="form-control" value="{{ key_encrypt if key_encrypt is defined else '' }}"
+                            name="inputKeyPlain" placeholder="Input Key" required>
+                        </div>
+
+                        {% if encrypted_text is defined %}
+                        <div class="mb-3">
+                            <label class="form-label">Output: Plain text</label>
+                            <input type="text" class="form-control" readonly value="{{ encrypted_text }}">
+                        </div>
+                        {% endif %} 
+                        <button type="submit" class="btn btn-primary">Encrypt</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold; color: blue;">DECRYPTION</td>
+            </tr>
+            <tr>
+                <td>
+                    <form method="POST" action="/caesar_decrypt">
+                        <div class="mb-3">
+                            <label class="form-label">Cipher text:</label>
+                            <input type="text" class="form-control" value="{{ text_decrypt if text_decrypt is defined else '' }}" name="inputCipherText" placeholder="Input Cipher Text" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Key:</label>
+                            <input type="number" class="form-control" value="{{ key_decrypt if key_decrypt is defined else '' }}" name="inputKeyCipher" placeholder="Input Key" required>
+                        </div>
+
+                        {% if decrypted_text is defined %}
+                        <div class="mb-3">
+                            <label class="form-label">Output: Plain text</label>
+                            <input type="text" class="form-control" readonly value="{{ decrypted_text }}">
+                        </div>
+                        {% endif %}
+
+                        <button type="submit" class="btn btn-success">Decrypt</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
